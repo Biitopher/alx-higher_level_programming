@@ -1,0 +1,55 @@
+#!/usr/bin/python3
+"""
+>>> add_integer = __import__('0-add_integer').add_integer
+>>> add_integer(5, 1)
+6
+>>> add_integer(2.5, 3)
+5
+>>> add_integer(1.5, 2.7)
+4
+>>> add_integer('5', 10)
+Traceback (most recent call last):
+    ...
+TypeError: a must be an integer
+>>> add_integer(5, '10')
+Traceback (most recent call last):
+    ...
+TypeError: b must be an integer
+>>> add_integer('5', '10')
+Traceback (most recent call last):
+    ...
+TypeError: a must be an integer
+>>> add_integer(None, 10)
+Traceback (most recent call last):
+    ...
+TypeError: a must be an integer
+>>> add_integer(5, None)
+Traceback (most recent call last):
+    ...
+TypeError: b must be an integer
+>>> add_integer(None, None)
+Traceback (most recent call last):
+    ...
+TypeError: a must be an integer
+>>> add_integer([5,10], 10)
+Traceback (most recent call last):
+    ...
+TypeError: a must be an integer
+>>> add_integer(5, [5,10])
+Traceback (most recent call last):
+    ...
+TypeError: b must be an integer
+>>> add_integer([5,10], [5,10])
+Traceback (most recent call last):
+    ...
+TypeError: a must be an integer
+>>> add_integer((5,10), 10)
+Traceback (most recent call last):
+    ...
+TypeError: a must be an integer
+>>> add_integer(5, (5,10))
+Traceback (most recent call last):
+    ...
+TypeError: b must be an integer
+
+"""
