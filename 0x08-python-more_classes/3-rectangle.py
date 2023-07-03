@@ -45,9 +45,9 @@ class Rectangle:
         if self.width == 0 or self.height == 0:
             return ""
         rectangle_str = ""
-        for x in range(self.height):
+        for _ in range(self.height):
             rectangle_str += "#" * self.width + "\n"
         return rectangle_str
 
     def __repr__(self):
-        return f"Rectangle(width={self.width}, height3-rectangle.py={self.height})"
+        return f"<3-rectangle.Rectangle object at (rectangle_str)>"
