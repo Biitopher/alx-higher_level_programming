@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 import sys
 
+
 def solve_nqueens(n):
     if not isinstance(n, int):
         print("N must be a number")
@@ -13,7 +14,7 @@ def solve_nqueens(n):
         for i in range(row):
             if board[i][col] == 'Q':
                 return False
-        
+
         i = row - 1
         j = col - 1
         while i >= 0 and j >= 0:
@@ -21,7 +22,6 @@ def solve_nqueens(n):
                 return False
             i -= 1
             j -= 1
-        
 
         i = row - 1
         j = col + 1
@@ -30,7 +30,6 @@ def solve_nqueens(n):
                 return False
             i -= 1
             j += 1
-        
         return True
 
     def backtrack(board, row):
