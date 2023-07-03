@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 import sys
 
+
 def solve_nqueens(n):
     if not isinstance(n, int):
         print("N must be a number")
@@ -11,7 +12,8 @@ def solve_nqueens(n):
 
     def is_safe(board, row, col):
         for i in range(row):
-            if board[i] == col or board[i] - i == col - row or board[i] + i == col + row:
+            if board[i] == col or board[i] - i == col - row or \
+                    board[i] + i == col + row:
                 return False
         return True
 
@@ -27,6 +29,7 @@ def solve_nqueens(n):
 
     board = [-1] * n
     backtrack(board, 0)
+
 
 if __name__ == '__main__':
     if len(sys.argv) != 2:
