@@ -1,7 +1,6 @@
 #!/usr/bin/python3
 import sys
 
-
 def solve_nqueens(n):
     if not isinstance(n, int):
         print("N must be a number")
@@ -12,48 +11,30 @@ def solve_nqueens(n):
 
     def is_safe(board, row, col):
         for i in range(row):
-            if board[i][col] == 'Q':
+            if board[i] == col or board[i] - i == col - row or board[i] + i == col + row:
                 return False
-
-        i = row - 1
-        j = col - 1
-        while i >= 0 and j >= 0:
-            if board[i][j] == 'Q':
-                return False
-            i -= 1
-            j -= 1
-
-        i = row - 1
-        j = col + 1
-        while i >= 0 and j < n:
-            if board[i][j] == 'Q':
-                return False
-            i -= 1
-            j += 1
         return True
 
     def backtrack(board, row):
         if row == n:
-            for i in range(n):
-                print(''.join(board[i]))
-            print()
+            solution = [[i, board[i]] for i in range(n)]
+            print(solution)
         else:
             for col in range(n):
                 if is_safe(board, row, col):
-                    board[row][col] = 'Q'
+                    board[row] = col
                     backtrack(board, row + 1)
-                    board[row][col] = '.'
 
-    board = [['.' for _ in range(n)] for _ in range(n)]
+    board = [-1] * n
     backtrack(board, 0)
 
-    if __name__ == '__main__':
-        if len(sys.argv) != 2:
-            print("Usage: nqueens N")
-            sys.exit(1)
-        try:
-            n = int(sys.argv[1])
-            solve_nqueens(n)
-        except ValueError:
-            print("N must be a number")
+if __name__ == '__main__':
+    if len(sys.argv) != 2:
+        print("Usage: python 101-nqueens.py N")
+        sys.exit(1)
+    try:
+        n = int(sys.argv[1])
+        solve_nqueens(n)
+    except ValueError:
+        print("N must be a number")
         sys.exit(1)
