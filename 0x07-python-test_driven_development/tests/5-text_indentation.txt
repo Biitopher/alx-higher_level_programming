@@ -2,11 +2,13 @@
 """
 >>> text_indentation = __import__('5-text_indentation').text_indentation
 >>> text_indentation("Try it Yourself editor. makes it easy to learn Python")
-Try it Yourself editor\n\nmakes it easy to learn Python
+Try it Yourself editor
+<BLANKLINE>
+makes it easy to learn Python
 >>> text_indentation('Why is Python easy! Would you want to try?')
-Why is Python easy
-
-Would you want to try
+Why is Python easy! Would you want to try
+<BLANKLINE>
+<BLANKLINE>
 >>> text_indentation(6.0000)
 Traceback (most recent call last):
 ...

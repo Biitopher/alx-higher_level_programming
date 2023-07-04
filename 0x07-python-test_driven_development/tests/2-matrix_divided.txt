@@ -1,6 +1,6 @@
 #!/usr/bin/python3
-
-  >>> matrix_divided = __import__('2-matrix_divided').matrix_divided
+"""
+    >>> matrix_divided = __import__('2-matrix_divided').matrix_divided
     >>> matrix = [
     ...     [3, 0, 3],
     ...     [2, 15, 1]
@@ -8,9 +8,6 @@
     >>> print(matrix_divided(matrix, 3))
     [[1.0, 0.0, 1.0], [0.67, 5.0, 0.33]]
 
-Note that quotients are rounded to a maximum of two decimal places.
-
-::
 
     >>> matrix = [
     ...     [8, 9, 10],
@@ -19,16 +16,10 @@ Note that quotients are rounded to a maximum of two decimal places.
     >>> print(matrix_divided(matrix, 3))
     [[2.67, 3.0, 3.33], [1.0, 1.33, 1.67]]
 
-The original matrix is left unchanged.
-
-::
 
     >>> print(matrix)
     [[8, 9, 10], [3, 4, 5]]
 
-The function can also handle floating-point numbers.
-
-::
 
     >>> matrix = [
     ...     [1.1, -2.2, 3.3],
@@ -37,7 +28,6 @@ The function can also handle floating-point numbers.
     >>> print(matrix_divided(matrix, 3))
     [[0.37, -0.73, 1.1], [1.47, 1.83, -2.2]]
 
-::
 
 >>> matrix = "not a list"
     >>> print(matrix_divided(matrix, 3))
@@ -45,16 +35,11 @@ The function can also handle floating-point numbers.
         ...
     TypeError: matrix must be a matrix (list of lists) of integers/floats
 
-::
 
     >>> matrix = [[]]
     >>> print(matrix_divided(matrix, 3))
     [[]]
 
-An identical TypeError is raised if ``matrix`` is not specifically a list of
-lists.
-
-::
 
     >>> matrix = [1, 2, 3]
     >>> print(matrix_divided(matrix, 3))
@@ -62,10 +47,6 @@ lists.
         ...
     TypeError: matrix must be a matrix (list of lists) of integers/floats
 
-The same TypeError is raised yet again if any elements in ``matrix`` are
-neither ints nor floats.
-
-::
 
     >>> matrix = [
     ...     [1, 2, 3],
@@ -77,11 +58,6 @@ neither ints nor floats.
     TypeError: matrix must be a matrix (list of lists) of integers/floats
 
 
-Finally, all the rows in ``matrix`` must be the same size. If any rows are
-of different sizes, a new TypeError is raised.
-
-::
-
     >>> matrix = [
     ...     [1, 2, 3, 4],
     ...     [5, 6, 7]
@@ -92,9 +68,6 @@ of different sizes, a new TypeError is raised.
     TypeError: Each row of the matrix must have the same size
 
 
-
-::
-
     >>> matrix = [
     ...     [1, 2, 3],
     ...     [4, 5, 6]
@@ -104,19 +77,16 @@ of different sizes, a new TypeError is raised.
         ...
     TypeError: div must be a number
 
-::
 
     >>> print(matrix_divided(matrix, None))
     Traceback (most recent call last):
         ...
     TypeError: div must be a number
 
-``div`` must also be non-zero. Otherwise, a ZeroDivisionError is raised.
-
-::
 
     >>> print(matrix_divided(matrix, 0))
     Traceback (most recent call last):
         ...
     ZeroDivisionError: division by zero
 
+    """
