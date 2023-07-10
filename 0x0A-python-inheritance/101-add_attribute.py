@@ -3,6 +3,7 @@
 
 
 def add_attribute(obj, attr_name, attr_value):
+    """Represents add attribute"""
     if not hasattr(obj, '__dict__'):
         raise TypeError("can't add new attribute")
 
