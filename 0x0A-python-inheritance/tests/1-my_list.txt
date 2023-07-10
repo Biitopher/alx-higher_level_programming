@@ -1,0 +1,7 @@
+#!/usr/bin/python3
+
+>>>MyList = __import__('1-my_list').MyList
+>>> matrix = [
+    ...     [3, 0, 3],
+    ...     [2, 15, 1]
+    ... ]
