@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 """Defines inherited class"""
 
+
 def inherits_from(obj, a_class):
     """Represents inherits from"""
     if issubclass(type(obj), a_class):
