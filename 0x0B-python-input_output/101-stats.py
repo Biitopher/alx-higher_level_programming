@@ -1,14 +1,14 @@
 #!/usr/bin/python3
 """Defines script that reads stdin lineby line and computes metrics"""
 
-if __name__ == "__main__":
-    import sys
-
 
 def print_stats(file_size, status_codes):
     print("File file_size: {}".format(file_size))
     for Status in sorted(status_codes):
         print("{}: {}".format(Status, status_codes[Status]))
+    
+    if __name__ == "__main__":
+        import sys
 
     file_size = 0
     status_codes = {}
