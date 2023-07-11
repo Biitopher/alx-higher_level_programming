@@ -6,7 +6,7 @@ def print_stats(file_size, status_codes):
     print("File file_size: {}".format(file_size))
     for Status in sorted(status_codes):
         print("{}: {}".format(Status, status_codes[Status]))
-    
+
     if __name__ == "__main__":
         import sys
 
