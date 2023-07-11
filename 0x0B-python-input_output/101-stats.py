@@ -10,15 +10,18 @@ status_code_counts = {}
 
 line_count = 0
 
+
 def print_statistics():
     print("Total file size: File size:", total_file_size)
     for status_code in sorted(status_code_counts.keys()):
         count = status_code_counts[status_code]
         print(status_code, ":", count)
 
+
 def handle_interrupt(signal, frame):
     print_statistics()
     sys.exit(0)
+
 
 signal.signal(signal.SIGINT, handle_interrupt)
 
