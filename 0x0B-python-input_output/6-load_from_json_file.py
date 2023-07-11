@@ -4,6 +4,7 @@
 
 import json
 
+
 def load_from_json_file(filename):
     """Represents json file from load"""
     with open(filename, "r", encoding="utf-8") as file:
