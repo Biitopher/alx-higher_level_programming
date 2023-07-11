@@ -3,6 +3,7 @@
 
 import json
 
+
 def to_json_string(my_obj):
     """Represents json string"""
     return json.dumps(my_obj)
