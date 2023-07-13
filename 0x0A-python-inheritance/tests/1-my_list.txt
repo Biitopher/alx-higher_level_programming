@@ -1,7 +1,44 @@
 #!/usr/bin/python3
 
 >>>MyList = __import__('1-my_list').MyList
->>> matrix = [
-    ...     [3, 0, 3],
-    ...     [2, 15, 1]
-    ... ]
+
+class MyListTestCase(unittest.TestCase):
+    def test_print_sorted(self):
+        my_list = MyList([5, 3, 8, 1, 2])
+        expected_output = "[1, 2, 3, 5, 8]"
+        with captured_output() as (out, err):
+            my_list.print_sorted()
+        output = out.getvalue().strip()
+        self.assertEqual(output, expected_output)
+
+    def test_print_sorted_empty_list(self):
+        my_list = MyList([])
+        expected_output = "[]"
+        with captured_output() as (out, err):
+            my_list.print_sorted()
+        output = out.getvalue().strip()
+        self.assertEqual(output, expected_output)
+
+    def test_print_sorted_single_element(self):
+        my_list = MyList([5])
+        expected_output = "[5]"
+        with captured_output() as (out, err):
+            my_list.print_sorted()
+        output = out.getvalue().strip()
+        self.assertEqual(output, expected_output)
+
+from io import StringIO
+from contextlib import contextmanager
+
+@contextmanager
+def captured_output():
+    new_out, new_err = StringIO(), StringIO()
+    old_out, old_err = sys.stdout, sys.stderr
+    try:
+        sys.stdout, sys.stderr = new_out, new_err
+        yield sys.stdout, sys.stderr
+    finally:
+        sys.stdout, sys.stderr = old_out, old_err
+
+if __name__ == '__main__':
+    unittest.main()
