@@ -4,9 +4,10 @@
 
 from models.base import Base
 
+
 class Rectangle(Base):
-     """"Represents rectangle"""
-    def __init__(self, width, height, x=0, y=0, id=None):  
+    """"Represents rectangle"""
+    def __init__(self, width, height, x=0, y=0, id=None):
         self.width = width
         self.height = height
         self.x = x
@@ -64,3 +65,9 @@ class Rectangle(Base):
     def area(self):
         return self.width * self.height
 
+    def display(self):
+        for x in range(self.height):
+            print("#" * self.width)
+
+    def __str__(self):
+        return f"[Rectangle] ({self.id}) {self.x}/{self.y} - {self.width}/{self.height}"

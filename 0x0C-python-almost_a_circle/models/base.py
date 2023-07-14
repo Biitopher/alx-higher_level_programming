@@ -2,7 +2,7 @@
 """Defines Base"""
 
 
-Class Base:
+class Base:
     """Represents base"""
     __nb_objects = 0
 
