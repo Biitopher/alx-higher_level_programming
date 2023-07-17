@@ -43,8 +43,12 @@ class Base:
     @classmethod
     def create(cls, **dictionary):
         """Returns all set attributes"""
-        dummy_instance = cls(1, 1)
+        if cls.__name__ == "Rectangle":
+            dummy_instance = cls(1, 1)
+        else:
+            dummy_instance = cls(1)
         dummy_instance.update(**dictionary)
+        return dummy_instance
 
     def load_from_file(cls):
         """List of instances"""
