@@ -65,3 +65,44 @@ class Rectangle(Base):
     def area(self):
         """Rectangle area"""
         return self.width * self.height
+
+    def display(self):
+        """prints in stdout  the Rectangle instance with character #"""
+        for x in range(self.height):
+            print("#" * self.width)
+
+    def __str__(self):
+        """Overriding the string"""
+        return ("[Rectangle] ({}) {}/{} - {}/{}".format(self.id,
+                                                        self.x,
+                                                        self.y,
+                                                        self.width,
+                                                        self.height))
+
+    def update(self, *args, **kwargs):
+        """Handling arguments"""
+        if args:
+            num_args = len(args)
+            if num_args >= 1:
+                self.id = args[0]
+            if num_args >= 2:
+                self.width = args[1]
+            if num_args >= 3:
+                self.height = args[2]
+            if num_args >= 4:
+                self.x = args[3]
+            if num_args >= 5:
+                self.y = args[4]
+        else:
+            for key, value in kwargs.items():
+                setattr(self, key, value)
+
+    def to_dictionary(self):
+        """Represents dictionary"""
+        return {
+            'id': self.id,
+            'width': self.width,
+            'height': self.height,
+            'x': self.x,
+            'y': self.y
+        }
