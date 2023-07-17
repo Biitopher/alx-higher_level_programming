@@ -68,8 +68,10 @@ class Rectangle(Base):
 
     def display(self):
         """prints in stdout  the Rectangle instance with character #"""
-        for x in range(self.height):
-            print("#" * self.width)
+        for y in range(self.__y):
+            print()
+        for h in range(self.__height):
+            print(" " * self.__x + "#" * self.__width)
 
     def __str__(self):
         """Overriding the string"""
