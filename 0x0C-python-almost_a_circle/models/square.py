@@ -20,9 +20,11 @@ class Square(Rectangle):
         self.height = value
 
     def __str__(self):
+        """Overriding of the string"""
         return f"[Square] ({self.id}) {self.x}/{self.y} - {self.width}"
 
     def update(self, *args, **kwargs):
+        """Handles arguments"""
         if args:
             arg_names = ['id', 'size', 'x', 'y']
             for a, arg in enumerate(args):
@@ -32,6 +34,7 @@ class Square(Rectangle):
                 setattr(self, key, value)
 
     def to_dictionary(self):
+        """Represents dictionary"""
         return {
             'id': self.id,
             'size': self.size,
