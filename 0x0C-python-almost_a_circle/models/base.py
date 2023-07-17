@@ -1,7 +1,7 @@
 #!/usr/bin/python3
+
+
 """Defines Base"""
-
-
 import json
 
 
