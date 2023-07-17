@@ -52,16 +52,15 @@ class Base:
 
     def load_from_file(cls):
         """List of instances"""
-        filename = cls.__name__ + ".csv"
+        list_rectangles_output = Rectangle.load_from_file(rectangle.py)
+        for rect in list_rectangles_output:
+            print(rect)
+        filename = cls.__name__ + ".json"
         try:
-            with open(filename, "r", newline="") as csvfile:
-                if cls.__name__ == "Rectangle":
-                    fieldnames = ["id", "width", "height", "x", "y"]
-                else:
-                    fieldnames = ["id", "size", "x", "y"]
-                list_dicts = csv.DictReader(csvfile, fieldnames=fieldnames)
-                list_dicts = [dict([k, int(v)] for k, v in d.items())
-                              for d in list_dicts]
-                return [cls.create(**d) for d in list_dicts]
-        except IOError:
+            with open(filename, "r") as file:
+                data = file.read()
+                obj_list = cls.from_json_string(data)
+                instances = [cls.create(**obj) for obj in obj_list]
+                return instances
+        except FileNotFoundError:
             return []
