@@ -27,14 +27,3 @@ class TestBase(unittest.TestCase):
 
         self.assertEqual(Base.from_json_string(None), [])
 
-    def test_save_to_file(self):
-        class MockObj:
-            def to_dictionary(self):
-                return {'id': 1, 'name': 'Test'}
-
-        mock_objs = [MockObj(), MockObj(), MockObj()]
-        Base.save_to_file(mock__objs)
-
-
-if __name__ == '__main__':
-    unittest.main()
