@@ -2,6 +2,7 @@
 """Defines Base"""
 import json
 import csv
+import turtle
 
 
 class Base:
@@ -98,3 +99,40 @@ class Base:
                 return [cls.create(**d) for d in list_dicts]
         except FileNotFoundError:
             return []
+
+    @staticmethod
+    def draw(list_rectangles, list_squares):
+        """Static method to open and draw windows"""
+        pen = turtle.Turtle()
+        pen.screen.bgcolor("blue")
+        pen.pensize(3)
+        pen.shape("turtle")
+
+        pen.color("black")
+        for rect in list_rectangles:
+            pen.showturtle()
+            pen.up()
+            pen.goto(rect.x, rect.y)
+            pen.down()
+            for i in range(2):
+                pen.forward(rect.width)
+                pen.left(90)
+                pen.forward(rect.height)
+                pen.left(90)
+            pen.hideturtle()
+
+        pen.color("red")
+        for sq in list_squares:
+            pen.showturtle()
+            pen.up()
+            pen.goto(sq.x, sq.y)
+            pen.down()
+            for i in range(2):
+                pen.forward(sq.width)
+                pen.left(90)
+                pen.forward(sq.height)
+                pen.left(90)
+            pen.hideturtle()
+
+        turtle.exitonclick()
+
