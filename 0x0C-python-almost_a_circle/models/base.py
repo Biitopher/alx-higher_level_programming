@@ -45,16 +45,16 @@ class Base:
         """Returns all set attributes"""
         if cls.__name__ == "Rectangle":
             dummy_instance = cls(1, 1)
-        else:
+        elif cls.__name__ == "Square":
             dummy_instance = cls(1)
+        else:
+            dummy_instance = cls()
         dummy_instance.update(**dictionary)
         return dummy_instance
 
+    @classmethod
     def load_from_file(cls):
         """List of instances"""
-        list_rectangles_output = Rectangle.load_from_file(rectangle.py)
-        for rect in list_rectangles_output:
-            print(rect)
         filename = cls.__name__ + ".json"
         try:
             with open(filename, "r") as file:
@@ -63,4 +63,4 @@ class Base:
                 instances = [cls.create(**obj) for obj in obj_list]
                 return instances
         except FileNotFoundError:
-            return []
+           return []
