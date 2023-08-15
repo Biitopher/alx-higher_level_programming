@@ -1,5 +1,5 @@
 -- Import database
-SELECT city, AVG(temperature) AS avg_temperature_fahrenheit
-FROM temperature_data
+SELECT city, AVG(value) AS avg_temp
+FROM temperatures
 GROUP BY city
-ORDER BY avg_temperature_fahrenheit DESC;
+ORDER BY avg_temp DESC;
