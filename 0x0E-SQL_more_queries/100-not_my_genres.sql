@@ -1,4 +1,4 @@
---Lists all genres not linked to the show
+-- Lists all genres not linked to the show
 SELECT name
 FROM tv_genres
 WHERE tv_genres.id NOT IN (
