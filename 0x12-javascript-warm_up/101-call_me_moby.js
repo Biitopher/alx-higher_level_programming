@@ -1,11 +1,10 @@
 #!/usr/bin/node
 
-const executeUtils = {
-  executeNTimes: function (x, theFunction) {
-    for (let a = 0; a < x; a++) {
-      theFunction();
-    }
+const callMeMoby = (x, theFunction) => {
+    if (x > 0) {
+      theFunction ();
+	callMeMoby (x = 1, theFunction);
   }
 };
 
-module.exports = executeUtils;
+module.exports.callMeMoby = callMeMoby;
