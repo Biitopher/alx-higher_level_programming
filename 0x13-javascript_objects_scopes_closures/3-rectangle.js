@@ -7,15 +7,10 @@ class Rectangle {
       this.height = h;
     }
   }
-}
 
-print() {
-    if (this.width === 0 || this.height === 0) {
-      console.log();
-    } else {
-      for (let x = 0; x < this.height; x++) {
-        console.log('X'.repeat(this.width));
-      }
+  print (b = 'X') {
+    for (let a = 0; a < this.height; a++) {
+      console.log(b.repeat(this.width));
     }
   }
 }
