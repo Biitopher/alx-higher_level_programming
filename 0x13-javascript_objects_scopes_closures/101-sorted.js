@@ -15,4 +15,3 @@ for (const userId in dict) {
 }
 
 console.log(usersByOccurrence);
-
