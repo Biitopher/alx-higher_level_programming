@@ -6,14 +6,14 @@ import sys
 import MySQLdb
 
 
-def search_states(username, password, database, state_name):
+def search_states(username, password, database_name, state_name):
     try:
         db = MySQLdb.connect(
                 host='localhost',
                 port=3306,
                 user=username,
                 passwd=password,
-                db=database
+                db=database_name
                 )
 
         cursor = db.cursor()
@@ -38,9 +38,9 @@ def search_states(username, password, database, state_name):
 if __name__ == "__main__":
     if len(sys.argv) != 5:
         print("Usage: python \
-                script.py <username> <password> <database> <state_name>")
+                script.py <username> <password> <database_name> <state_name>")
         sys.exit(1)
 
-    username, password, database, state_name = (sys.argv[1],
+    username, password, database_name, state_name = (sys.argv[1],
     sys.argv[2], sys.argv[3], sys.argv[4])
-    search_states(username, password, database, state_name)
+    search_states(username, password, database_name, state_name)
