@@ -17,7 +17,8 @@ def list_states_with_N(username, password, database_name):
 
         cursor = connection.cursor()
 
-        cursor.execute("SELECT * FROM states WHERE name LIKE 'N%' ORDER BY states.id ASC")
+        cursor.execute("SELECT * FROM states WHERE name LIKE 'N%' \
+                ORDER BY states.id ASC")
 
         states = cursor.fetchall()
 
