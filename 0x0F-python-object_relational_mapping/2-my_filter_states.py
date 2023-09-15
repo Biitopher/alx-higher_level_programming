@@ -2,8 +2,8 @@
 """Script displaying all values in the states"""
 
 
-import sys
 import MySQLdb
+import sys
 
 
 def search_states(username, password, database_name, state_name):
