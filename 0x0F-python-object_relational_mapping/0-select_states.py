@@ -1,8 +1,10 @@
 #!/usr/bin/python3
+"""Script listing all states"""
 
 
 import sys
 import MySQLdb
+
 
 def list_states(username, password, database_name):
     """ Function to list states """
@@ -22,6 +24,8 @@ def list_states(username, password, database_name):
     except MySQLdb.Error as e:
         print("MySQL Error: ", e)
         sys.exit(1)
+
+
 if __name__ == "__main__":
     if len(sys.argv) != 4:
         print("Wrong format")
