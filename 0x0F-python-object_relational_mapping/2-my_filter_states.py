@@ -7,6 +7,7 @@ import MySQLdb
 
 
 def search_states(username, password, database_name, state_name):
+    """Defines states"""
     try:
         db = MySQLdb.connect(
                 host='localhost',
