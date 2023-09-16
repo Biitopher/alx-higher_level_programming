@@ -8,6 +8,7 @@ from sqlalchemy import create_engine
 
 Base = declarative_base()
 
+
 class State(Base):
     """Defines state"""
     __tablename__ = 'states'
