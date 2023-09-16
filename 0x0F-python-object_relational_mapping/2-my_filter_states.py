@@ -6,38 +6,15 @@ import MySQLdb
 import sys
 
 
-def search_states(username, password, database_name, state_name):
-    try:
-        db = MySQLdb.connect(host='localhost',
-                             port=3306,
-                             user=username,
-                             passwd=password,
-                             db=database_name)
-
-        cursor = db.cursor()
-
-        query = "SELECT * FROM states WHERE name = %s ORDER BY id ASC"
-
-        cursor.execute(query, (state_name,))
-
-        results = cursor.fetchall()
-
-        for row in results:
-            print(row)
-
-        cursor.close()
-        db.close()
-
-    except MySQLdb.Error as e:
-        print("MySQL Error:", e)
-        sys.exit(1)
-
 
 if __name__ == "__main__":
-    if len(sys.argv) != 5:
-        print("Wrong Format")
-        sys.exit(1)
-
-    (username, password, database_name, state_name) = (sys.argv[1],
-                                                    sys.argv[2], sys.argv[3], sys.argv[4])
-    search_states(username, password, database_name, state_name)
+    db = MySQLdb.connect(host="localhost", user=sys.argv[1],
+                         passwd=sys.argv[2], db=sys.argv[3], port=3306)
+    cur = db.cursor()
+    cur.execute("SELECT * FROM states WHERE name LIKE BINARY '{}'"
+                .format(sys.argv[3]))
+    rows = cur.fetchall()
+    for row in rows:
+        print(row)
+    cur.close()
+    db.close()
