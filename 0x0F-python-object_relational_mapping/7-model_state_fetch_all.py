@@ -10,7 +10,8 @@ import sys
 
 def list_states(username, password, database_name):
     try:
-        db_url = f"mysql://{username}:{password}@localhost:3306/{database_name}"
+        db_url = f"mysql://{username}:\
+                {password}@localhost:3306/{database_name}"
 
         engine = create_engine(db_url)
 
