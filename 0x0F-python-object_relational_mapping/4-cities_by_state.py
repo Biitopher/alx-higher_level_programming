@@ -5,6 +5,7 @@
 import MySQLdb
 import sys
 
+
 def list_cities(username, password, database):
     try:
         db = MySQLdb.connect(host='localhost',
