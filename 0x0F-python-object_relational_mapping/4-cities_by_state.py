@@ -7,7 +7,11 @@ import sys
 
 def list_cities(username, password, database):
     try:
-        db = MySQLdb.connect(host='localhost', port=3306, user=username, passwd=password, db=database)
+        db = MySQLdb.connect(host='localhost',
+                             port=3306,
+                             user=username,
+                             passwd=password,
+                             db=database)
 
         cursor = db.cursor()
 
@@ -31,6 +35,7 @@ def list_cities(username, password, database):
     except MySQLdb.Error as e:
         print("MySQL Error:", e)
         sys.exit(1)
+
 
 if __name__ == "__main__":
     if len(sys.argv) != 4:
