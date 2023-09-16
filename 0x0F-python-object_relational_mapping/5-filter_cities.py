@@ -37,7 +37,7 @@ if __name__ == "__main__":
         sys.exit(1)
 
     (username, password, database, state_name) = (sys.argv[1],
-                                                    sys.argv[2],
-                                                    sys.argv[3],
-                                                    sys.argv[4])
+                                                  sys.argv[2],
+                                                  sys.argv[3],
+                                                  sys.argv[4])
     list_cities_by_state(username, password, database, state_name)
