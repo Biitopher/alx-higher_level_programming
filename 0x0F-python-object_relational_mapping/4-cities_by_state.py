@@ -5,30 +5,37 @@
 import MySQLdb
 import sys
 
+def list_cities(username, password, database):
+    try:
+        db = MySQLdb.connect(host='localhost', port=3306, user=username, passwd=password, db=database)
+
+        cursor = db.cursor()
+
+        query = "SELECT * FROM cities ORDER BY id ASC"
+        query = ("SELECT `c`.`id`, `c`.`name`, `s`.`name` \
+                 FROM `cities` as `c` \
+                INNER JOIN `states` as `s` \
+                   ON `c`.`state_id` = `s`.`id` \
+                ORDER BY `c`.`id`")
+
+        cursor.execute(query)
+
+        results = cursor.fetchall()
+
+        for row in results:
+            print(row)
+
+        cursor.close()
+        db.close()
+
+    except MySQLdb.Error as e:
+        print("MySQL Error:", e)
+        sys.exit(1)
 
 if __name__ == "__main__":
     if len(sys.argv) != 4:
-        print("Usage: python script.py <username> <password> <database_name>")
-    else:
-        try:
-            db = MySQLdb.connect(user=sys.argv[1],
-                                 passwd=sys.argv[2],
-                                 db=sys.argv[3])
-            c = db.cursor()
+        print("Usage: python script.py <username> <password> <database>")
+        sys.exit(1)
 
-            c.execute("SELECT * FROM `cities` ORDER BY `id`")
-            c.execute("SELECT `c`.`id`, `c`.`name`, `s`.`name` \
-                         FROM `cities` as `c` \
-                        INNER JOIN `states` as `s` \
-                           ON `c`.`state_id` = `s`.`id` \
-                        ORDER BY `c`.`id`")
-            city_details = c.fetchall()
-
-            for city_detail in city_details:
-                print(city_detail)
-
-        except MySQLdb.Error as e:
-            print("MySQL Error:", e)
-        finally:
-            c.close()
-            db.close()
+    username, password, database = sys.argv[1], sys.argv[2], sys.argv[3]
+    list_cities(username, password, database)
