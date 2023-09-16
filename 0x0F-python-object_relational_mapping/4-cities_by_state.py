@@ -17,8 +17,6 @@ if __name__ == "__main__":
             c = db.cursor()
 
             c.execute("SELECT * FROM `cities` ORDER BY `id`")
-            cities = c.fetchall()
-
             c.execute("SELECT `c`.`id`, `c`.`name`, `s`.`name` \
                          FROM `cities` as `c` \
                         INNER JOIN `states` as `s` \
