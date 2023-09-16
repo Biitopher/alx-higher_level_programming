@@ -7,33 +7,26 @@ from model_state import Base, State
 import sys
 
 
-def print_first_state(username, password, database_name):
-    try:
-        db_url = f"mysql://{username}:\
-                {password}@localhost:3306/{database_name}"
-
-        engine = create_engine(db_url)
-        Session = sessionmaker(bind=engine)
-        session = Session()
-
-        first_state = session.query(State).order_by(State.id).first()
-
-        if first_state:
-            print(f"{first_state.id}: {first_state.name}")
-        else:
-            print("Nothing")
-
-        session.close()
-
-    except Exception as e:
-        print(f"Error: {e}")
-        sys.exit(1)
-
-
 if __name__ == "__main__":
     if len(sys.argv) != 4:
-        print("Usage: python script.py <username> <password> <database_name>")
+        print("Usage: python \
+                script.py <mysql_username> <mysql_password> <database_name>")
+        sys.exit(1)
+
+    mysql_username = sys.argv[1]
+    mysql_password = sys.argv[2]
+    database_name = sys.argv[3]
+
+    engine = create_engine(f'mysql+mysqldb://{mysql_username}:\
+            {mysql_password}@localhost:3306/{database_name}')
+    Base.metadata.create_all(engine)
+    Session = sessionmaker(bind=engine)
+
+    session = Session()
+
+    first_state = session.query(State).order_by(State.id).first()
+
+    if first_state is None:
+        print("Nothing")
     else:
-        username, password, database_name = sys.argv[1],
-        sys.argv[2], sys.argv[3]
-        print_first_state(username, password, database_name)
+        print(f"{first_state.id}: {first_state.name}")
