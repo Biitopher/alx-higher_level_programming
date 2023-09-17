@@ -8,6 +8,7 @@ from sqlalchemy.orm import sessionmaker
 from model_state import Base, State
 from model_city import City
 
+
 def list_states_and_cities(username, password, database):
     engine = create_engine(f'mysql://{username}:\
             {password}@localhost:3306/{database}')
@@ -15,12 +16,14 @@ def list_states_and_cities(username, password, database):
     Session = sessionmaker(bind=engine)
     session = Session()
 
-    states_and_cities = session.query(State, City).join(City).order_by(State.id, City.id).all()
+    states_and_cities = (session.query(State, City)
+                         .join(City).order_by(State.id, City.id).all())
 
     session.close()
 
     for state, city in states_and_cities:
         print(f"{state.name}: ({city.id}) {city.name}")
+
 
 if __name__ == "__main__":
     if len(sys.argv) != 4:
