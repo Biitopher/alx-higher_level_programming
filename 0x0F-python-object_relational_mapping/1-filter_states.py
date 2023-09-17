@@ -7,13 +7,11 @@ import sys
 
 def list_states_with_N(username, password, database_name):
     try:
-        connection = MySQLdb.connect(
-            host='localhost',
-            user=username,
-            passwd=password,
-            db=database_name,
-            port=3306
-        )
+        connection = MySQLdb.connect(host='localhost',
+                                     user=username,
+                                     passwd=password,
+                                     db=database_name,
+                                     port=3306)
 
         cursor = connection.cursor()
 
