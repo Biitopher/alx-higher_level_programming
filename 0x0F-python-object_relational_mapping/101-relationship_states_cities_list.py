@@ -22,7 +22,7 @@ def list_states_and_cities(username, password, database):
     session.close()
 
     for state, city in states_and_cities:
-        print(f"{state.name}: ({city.id}) {city.name}")
+        print(f"{state.id}: {state.name}\n\t{city.id}: {city.name}")
 
 
 if __name__ == "__main__":
