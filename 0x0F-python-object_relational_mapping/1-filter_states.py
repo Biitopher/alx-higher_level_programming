@@ -1,40 +1,32 @@
 #!/usr/bin/python3
 """Script listing State names starting with N"""
 
-import MySQLdb
 import sys
-
-
-def list_states_with_N(username, password, database_name):
-    try:
-        connection = MySQLdb.connect(host='localhost',
-                                     user=username,
-                                     passwd=password,
-                                     db=database_name,
-                                     port=3306)
-
-        cursor = connection.cursor()
-
-        cursor.execute("SELECT * FROM states WHERE name LIKE 'N%' \
-                ORDER BY states.id ASC")
-
-        states = cursor.fetchall()
-
-        for state in states:
-            print(state)
-
-        cursor.close()
-        connection.close()
-
-    except MySQLdb.Error as e:
-        print(f"Error: {e}")
-        sys.exit(1)
+import MySQLdb
 
 
 if __name__ == "__main__":
-    if len(sys.argv) != 4:
-        print("Usage: python script.py <username> <password> <database_name>")
-        sys.exit(1)
+    mysql_username = sys.argv[1]
+    mysql_password = sys.argv[2]
+    database_name = sys.argv[3]
 
-    username, password, database_name = sys.argv[1], sys.argv[2], sys.argv[3]
-    list_states_with_N(username, password, database_name)
+    db = MySQLdb.connect(host="localhost",
+                         port=3306,
+                         user=mysql_username,
+                         passwd=mysql_password,
+                         db=database_name)
+    cursor = db.cursor()
+
+    query = """
+        SELECT * FROM states
+        WHERE name LIKE 'N%'
+        ORDER BY id ASC
+    """
+    cursor.execute(query)
+
+    results = cursor.fetchall()
+    for row in results:
+        print(row)
+
+    cursor.close()
+    db.close()
