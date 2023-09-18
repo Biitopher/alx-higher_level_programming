@@ -7,6 +7,7 @@ from sqlalchemy.orm import sessionmaker
 from relationship_city import City
 from relationship_state import Base, State
 
+
 if __name__ == "__main__":
     if len(sys.argv) != 4:
         print("Usage: python \
