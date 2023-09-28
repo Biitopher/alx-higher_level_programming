@@ -1,7 +1,8 @@
 #!/usr/bin/python3
-#Function that in a list of unsorted integers where peak is found
+"""Function that in a list of unsorted integers where peak is found"""
 
 def find_peak(list_of_integers):
+    """Defines peak"""
     if not list_of_integers:
         return None
 
