@@ -1,4 +1,3 @@
 #!/bin/bash
 #Script that displays size of the body
-
-curl -sI $1 | grep "Content-Length" | cut -d " " -f2
+curl -Is "$1" | grep -w 'Content-Length' | cut -f2 -d' '
