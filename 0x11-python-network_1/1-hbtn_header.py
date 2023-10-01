@@ -16,6 +16,6 @@ try:
         if x_request_id:
             print(x_request_id)
         else:
-            print("X-Request-Id not found in response headers.")
+            print()
 except Exception as e:
     print(f"Error: {e}")
