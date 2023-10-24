@@ -1,17 +1,20 @@
 #!/usr/bin/node
 
-import sys
+const fs = require('fs');
 
-def read_and_print_file(file_path):
-    try:
-        with open(file_path, 'r', encoding='utf-8') as file:
-            content = file.read()
-            print(content)
-    except Exception as e:
-        print(f"An error occurred while reading the file: {e}")
+function readAndPrintFileContent(filePath) {
+    fs.readFile(filePath, 'utf-8', (err, data) => {
+        if (err) {
+            console.error(`An error occurred: ${err}`);
+        } else {
+            console.log(data);
+        }
+    });
+}
 
-if len(sys.argv) != 2:
-    print("Usage: python read_file.py <file_path>")
-else:
-    file_path = sys.argv[1]
-    read_and_print_file(file_path)
+if (process.argv.length !== 3) {
+    console.log("Usage: node read_file.js <file_path>");
+} else {
+    const filePath = process.argv[2];
+    readAndPrintFileContent(filePath);
+}
