@@ -1,46 +1,45 @@
 #!/usr/bin/node
-const request = require('request');
-const movieId = process.argv[2];
 
-if (!movieId) {
-  console.log('Usage: ./star_wars_characters.js <Movie ID>');
-  process.exit(1);
+const request = require('request');
+
+function getDataFrom (url) {
+  return new Promise(function (sort, dismiss) {
+    request(url, function (error, response, body) {
+      if (error) {
+        dismiss(error);
+      } else {
+        sort(body);
+      }
+    });
+  });
 }
 
-const baseUrl = 'https://swapi.dev/api/films/';
+function errHandler (error) {
+  console.log(error);
+}
 
-request(`${baseUrl}${movieId}/`, (error, response, body) => {
-  if (error) {
-    console.error(error);
-  }
+function printMovieCharacters (movieId) {
+  const movieUri = `https://swapi-api.hbtn.io/api/films/${movieId}`;
 
-  if (response.statusCode === 200) {
-    const movieData = JSON.parse(body);
+  getDataFrom(movieUri)
+    .then(JSON.parse, errHandler)
+    .then(function (res) {
+      const characters = res.characters;
+      const promises = [];
 
-    if (movieData.characters && Array.isArray(movieData.characters)) {
-      console.log(`Characters in ${movieData.title} (${movieData.release_date}):`);
-
-      function fetchCharacter(index) {
-        if (index >= movieData.characters.length) {
-          return;
-        }
-
-        request(movieData.characters[index], (charError, charResponse, charBody) => {
-          if (!charError && charResponse.statusCode === 200) {
-            const characterData = JSON.parse(charBody);
-            console.log(characterData.name);
-            fetchCharacter(index + 1);
-          } else {
-            console.error('Error fetching character data:', charError);
-          }
-        });
+      for (let x = 0; x < characters.length; ++x) {
+        promises.push(getDataFrom(characters[x]));
       }
 
-      fetchCharacter(0);
-    } else {
-      console.error('No character data found in the movie.');
-    }
-  } else {
-    console.error(`Error: ${response.statusCode} - ${response.statusMessage}`);
-  }
-});
+      Promise.all(promises)
+        .then((data) => {
+          for (let a = 0; a < results.length; ++a) {
+            console.log(JSON.parse(results[i]).name);
+          }
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    });
+}
+printMovieCharacters(process.argv[2]);
