@@ -3,12 +3,12 @@
 const request = require('request');
 
 function getDataFrom (url) {
-  return new Promise(function (sort, dismiss) {
+  return new Promise(function (resolve, reject) {
     request(url, function (error, response, body) {
       if (error) {
-        dismiss(error);
+        reject(error);
       } else {
-        sort(body);
+        resolve(body);
       }
     });
   });
@@ -33,8 +33,8 @@ function printMovieCharacters (movieId) {
 
       Promise.all(promises)
         .then((data) => {
-          for (let a = 0; a < results.length; ++a) {
-            console.log(JSON.parse(results[i]).name);
+          for (let a = 0; a < data.length; ++a) {
+            console.log(JSON.parse(data[a]).name);
           }
         })
         .catch((error) => {
