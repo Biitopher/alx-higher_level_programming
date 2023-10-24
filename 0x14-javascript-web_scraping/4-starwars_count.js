@@ -1,22 +1,12 @@
 #!/usr/bin/node
 const request = require('request');
-
-if (process.argv.length !== 3) {
-  console.log('Usage: ./wedge_antilles_movies.js <movie_api_url>');
-} else {
-  const apiUrl = process.argv[2];
-
-  request(apiUrl, (error, response, body) => {
-    if (error) {
-      console.error(`Error: ${error}`);
-    } else if (response.statusCode === 200) {
-      const data = JSON.parse(body);
-      const wedgeAntillesMovies = data.results.filter((movie) =>
-        movie.characters.includes('https://swapi-api.alx-tools.com/api/people/18/')
-      );
-      console.log(`Number of movies with Wedge Antilles: ${wedgeAntillesMovies.length}`);
-    } else {
-      console.error(`Error: API request failed`);
-    }
-  });
-}
+request(process.argv[2], function (error, response, body) {
+  if (!error) {
+    const data = JSON.parse(body).data;
+    console.log(data.reduce((count, movie) => {
+      return movie.characters.find((character) => character.endsWith('/18/'))
+        ? count + 1
+        : count;
+    }, 0));
+  }
+});
