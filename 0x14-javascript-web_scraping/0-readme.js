@@ -1,11 +1,6 @@
 #!/usr/bin/node
 
 const fs = require('fs');
-
-fs.readPrint_file(process.argv[2], 'utf8', function (error, data) {
-  if (error) {
-    console.log(error);
-  } else {
-    process.stdout.write(data);
-  }
+fs.readFile(process.argv[2], 'utf8', function (error, data) {
+	console.log(error || data);
 });
